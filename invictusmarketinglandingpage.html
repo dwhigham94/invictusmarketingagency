@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invictus Marketing Agency — Daniel Whigham</title>
+<meta name="description" content="Invictus Marketing Agency — Independent insurance marketing and client acquisition. Led by Daniel Whigham.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0A0A08;
+    --paper: #F4F1EA;
+    --gold: #B8953A;
+    --gold-light: #D4AF62;
+    --muted: #7A776E;
+    --border: #D8D3C8;
+    --white: #FDFCF8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.4;
+  }
+
+  /* ── HEADER ── */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: rgba(244, 241, 234, 0.92);
+    backdrop-filter: blur(12px);
+    z-index: 50;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .logo span {
+    color: var(--gold);
+  }
+
+  nav {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  nav a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--ink); }
+
+  .nav-cta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white) !important;
+    background: var(--ink);
+    padding: 0.6rem 1.4rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--gold) !important; color: var(--white) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 88vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    padding: 7rem 4rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  h1 {
+    font-size: clamp(3.5rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    color: var(--ink);
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 420px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--white);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 1rem 2.2rem;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--ink); border-color: var(--ink); }
+
+  /* ── HERO RIGHT — decorative panel ── */
+  .hero-right {
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1.2s 0.4s ease both;
+  }
+
+  .hero-right::before {
+    content: 'INVICTUS';
+    position: absolute;
+    bottom: -2rem;
+    right: -1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10rem;
+    font-weight: 600;
+    color: rgba(184, 149, 58, 0.08);
+    letter-spacing: -0.05em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .hero-right-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 3.5rem;
+  }
+
+  .hero-stat {
+    margin-bottom: 2rem;
+  }
+
+  .hero-stat-num {
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-stat-num span {
+    color: var(--gold-light);
+  }
+
+  .hero-stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(253, 252, 248, 0.4);
+  }
+
+  .hero-divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(184, 149, 58, 0.4);
+    margin: 2rem 0;
+  }
+
+  .hero-quote {
+    font-size: 1.1rem;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(253, 252, 248, 0.6);
+    line-height: 1.6;
+    max-width: 280px;
+  }
+
+  .hero-quote cite {
+    display: block;
+    margin-top: 0.75rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-style: normal;
+    color: var(--gold-light);
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    padding: 6rem 4rem;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    display: block;
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  /* ── SERVICES ── */
+  #services {
+    border-top: 1px solid var(--border);
+    background: var(--white);
+  }
+
+  #services h2 {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 4rem;
+    max-width: 600px;
+  }
+
+  #services h2 em { font-style: italic; color: var(--gold); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+
+  .service-card {
+    padding: 2.5rem;
+    border-right: 1px solid var(--border);
+    transition: background 0.3s;
+    position: relative;
+  }
+
+  .service-card:last-child { border-right: none; }
+
+  .service-card:hover { background: var(--paper); }
+
+  .service-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .service-card h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .service-card p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  #about h2 {
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  #about h2 em { font-style: italic; color: var(--gold); }
+
+  #about p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .about-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .about-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-item:last-child { border-bottom: none; }
+
+  .about-item-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+    padding-top: 0.2rem;
+    min-width: 100px;
+  }
+
+  .about-item-val {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    border-top: 1px solid var(--border);
+    background: var(--ink);
+    color: var(--white);
+    text-align: center;
+  }
+
+  #contact .section-label { justify-content: center; color: var(--gold-light); }
+  #contact .section-label::after { display: none; }
+
+  #contact h2 {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: var(--white);
+  }
+
+  #contact h2 em { font-style: italic; color: var(--gold-light); }
+
+  #contact p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba(253,252,248,0.5);
+    margin-bottom: 3rem;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+
+  .contact-link:hover { transform: translateY(-3px); }
+
+  .contact-link-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+  }
+
+  .contact-link-val {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--white);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: rgba(253,252,248,0.25);
+  }
+
+  footer span { color: var(--gold); opacity: 0.5; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    header { padding: 1.5rem 2rem; }
+    nav { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 4rem 2rem 3rem; }
+    .hero-right { min-height: 300px; }
+    section { padding: 4rem 2rem; }
+    #services { padding: 4rem 2rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { border-right: none; border-bottom: 1px solid var(--border); }
+    .service-card:last-child { border-bottom: none; }
+    #about { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 2rem; }
+    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    .contact-links { gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Invictus<span>.</span></div>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact" class="nav-cta">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Invictus Marketing Agency</div>
+    <h1>Client acquisition<br>for <em>insurance</em><br>professionals.</h1>
+    <p class="hero-sub">We connect health insurance brokers with qualified prospects through targeted outreach, AI-assisted follow-up, and conversion-focused communication.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get in touch</a>
+      <a href="#services" class="btn-ghost">Our services</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-content">
+      <div class="hero-stat">
+        <div class="hero-stat-num">Health <span>&amp;</span></div>
+        <div class="hero-stat-num">Life</div>
+        <div class="hero-stat-label">Insurance marketing specialists</div>
+      </div>
+      <div class="hero-divider"></div>
+      <blockquote class="hero-quote">
+        "Out of the night that covers me, black as the pit from pole to pole — I am the master of my fate."
+        <cite>— W.E. Henley, Invictus</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">What we do</div>
+  <h2>Outreach that <em>converts.</em><br>Follow-up that closes.</h2>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <h3>Lead Outreach</h3>
+      <p>Targeted SMS and multi-channel outreach campaigns designed for health and life insurance prospects. Personalized at scale.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <h3>AI-Assisted Follow-Up</h3>
+      <p>Intelligent follow-up sequences that qualify prospects, handle common questions, and book appointments — automatically.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <h3>Broker Consulting</h3>
+      <p>Systems and strategy for independent brokers looking to build scalable, sustainable client acquisition pipelines.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-label">About</div>
+    <h2>Led by<br><em>Daniel Whigham.</em></h2>
+    <p>Invictus Marketing Agency was built for insurance professionals who are serious about growth. We combine direct outreach, intelligent automation, and proven sales frameworks to help brokers spend more time closing and less time chasing.</p>
+    <p>Based in Northeast Florida, serving brokers nationwide.</p>
+    <br>
+    <a href="#contact" class="btn-primary">Work with us</a>
+  </div>
+  <div class="about-details reveal">
+    <div class="about-item">
+      <div class="about-item-label">Principal</div>
+      <div class="about-item-val">Daniel Whigham<br>Independent Insurance Broker &amp; Agency Owner</div>
+    </div>
+    <div class="about-item">
+      <div class="about-item-label">Specialty</div>
+      <div class="about-item-val">Health insurance client acquisition, agent outreach systems, AI-assisted lead conversion</div>
+    </div>
+    <div class="about-item">
+      <div class="about-item-label">Location</div>
+      <div class="about-item-val">Fruit Cove / St. Johns, Florida</div>
+    </div>
+    <div class="about-item">
+      <div class="about-item-label">Licensing</div>
+      <div class="about-item-val">Licensed Health &amp; Life Insurance Professional, State of Florida</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get in touch</div>
+  <h2>Ready to<br><em>grow?</em></h2>
+  <p>Reach out to discuss how Invictus can support your agency.</p>
+  <div class="contact-links reveal">
+    <a href="mailto:contact@invictusmarketingagency.com" class="contact-link">
+      <span class="contact-link-label">Email</span>
+      <span class="contact-link-val">contact@invictusmarketingagency.com</span>
+    </a>
+    <a href="tel:+19045550000" class="contact-link" id="phone-link">
+      <span class="contact-link-label">Phone</span>
+      <span class="contact-link-val" id="phone-display">+1 (904) 555-0000</span>
+    </a>
+    <a href="#" class="contact-link">
+      <span class="contact-link-label">Location</span>
+      <span class="contact-link-val">St. Johns, Florida</span>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Invictus Marketing Agency — Daniel Whigham</p>
+  <p>St. Johns, Florida <span>·</span> All rights reserved</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
