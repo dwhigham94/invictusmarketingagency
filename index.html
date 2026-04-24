@@ -18,11 +18,11 @@
     --border: #D8D3C8;
     --white: #FDFCF8;
   }
-
+ 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
   html { scroll-behavior: smooth; }
-
+ 
   body {
     background: var(--paper);
     color: var(--ink);
@@ -30,7 +30,7 @@
     line-height: 1.6;
     overflow-x: hidden;
   }
-
+ 
   /* ── NOISE TEXTURE OVERLAY ── */
   body::before {
     content: '';
@@ -41,7 +41,7 @@
     z-index: 100;
     opacity: 0.4;
   }
-
+ 
   /* ── HEADER ── */
   header {
     display: flex;
@@ -56,7 +56,7 @@
     z-index: 50;
     animation: fadeDown 0.8s ease both;
   }
-
+ 
   .logo {
     font-family: 'DM Mono', monospace;
     font-size: 0.75rem;
@@ -65,17 +65,17 @@
     text-transform: uppercase;
     color: var(--ink);
   }
-
+ 
   .logo span {
     color: var(--gold);
   }
-
+ 
   nav {
     display: flex;
     gap: 2.5rem;
     align-items: center;
   }
-
+ 
   nav a {
     font-family: 'DM Mono', monospace;
     font-size: 0.7rem;
@@ -85,9 +85,9 @@
     text-decoration: none;
     transition: color 0.2s;
   }
-
+ 
   nav a:hover { color: var(--ink); }
-
+ 
   .nav-cta {
     font-family: 'DM Mono', monospace;
     font-size: 0.7rem;
@@ -99,9 +99,9 @@
     text-decoration: none;
     transition: background 0.2s;
   }
-
+ 
   .nav-cta:hover { background: var(--gold) !important; color: var(--white) !important; }
-
+ 
   /* ── HERO ── */
   .hero {
     min-height: 88vh;
@@ -110,7 +110,7 @@
     position: relative;
     overflow: hidden;
   }
-
+ 
   .hero-left {
     padding: 7rem 4rem 5rem;
     display: flex;
@@ -118,7 +118,7 @@
     justify-content: center;
     animation: fadeUp 1s 0.2s ease both;
   }
-
+ 
   .hero-eyebrow {
     font-family: 'DM Mono', monospace;
     font-size: 0.68rem;
@@ -130,7 +130,7 @@
     align-items: center;
     gap: 1rem;
   }
-
+ 
   .hero-eyebrow::before {
     content: '';
     display: block;
@@ -138,7 +138,7 @@
     height: 1px;
     background: var(--gold);
   }
-
+ 
   h1 {
     font-size: clamp(3.5rem, 5vw, 5.5rem);
     font-weight: 300;
@@ -147,12 +147,12 @@
     margin-bottom: 2rem;
     color: var(--ink);
   }
-
+ 
   h1 em {
     font-style: italic;
     color: var(--gold);
   }
-
+ 
   .hero-sub {
     font-size: 1.2rem;
     font-weight: 300;
@@ -161,13 +161,13 @@
     line-height: 1.7;
     margin-bottom: 3rem;
   }
-
+ 
   .hero-actions {
     display: flex;
     gap: 1.5rem;
     align-items: center;
   }
-
+ 
   .btn-primary {
     background: var(--ink);
     color: var(--white);
@@ -180,12 +180,12 @@
     transition: background 0.2s, transform 0.2s;
     display: inline-block;
   }
-
+ 
   .btn-primary:hover {
     background: var(--gold);
     transform: translateY(-1px);
   }
-
+ 
   .btn-ghost {
     font-family: 'DM Mono', monospace;
     font-size: 0.7rem;
@@ -197,9 +197,9 @@
     padding-bottom: 2px;
     transition: color 0.2s, border-color 0.2s;
   }
-
+ 
   .btn-ghost:hover { color: var(--ink); border-color: var(--ink); }
-
+ 
   /* ── HERO RIGHT — decorative panel ── */
   .hero-right {
     background: var(--ink);
@@ -207,7 +207,7 @@
     overflow: hidden;
     animation: fadeIn 1.2s 0.4s ease both;
   }
-
+ 
   .hero-right::before {
     content: 'INVICTUS';
     position: absolute;
@@ -221,7 +221,7 @@
     line-height: 1;
     white-space: nowrap;
   }
-
+ 
   .hero-right-content {
     position: absolute;
     inset: 0;
@@ -230,11 +230,11 @@
     justify-content: flex-end;
     padding: 3.5rem;
   }
-
+ 
   .hero-stat {
     margin-bottom: 2rem;
   }
-
+ 
   .hero-stat-num {
     font-size: 3.5rem;
     font-weight: 300;
@@ -242,11 +242,11 @@
     line-height: 1;
     margin-bottom: 0.3rem;
   }
-
+ 
   .hero-stat-num span {
     color: var(--gold-light);
   }
-
+ 
   .hero-stat-label {
     font-family: 'DM Mono', monospace;
     font-size: 0.65rem;
@@ -254,14 +254,14 @@
     text-transform: uppercase;
     color: rgba(253, 252, 248, 0.4);
   }
-
+ 
   .hero-divider {
     width: 40px;
     height: 1px;
     background: rgba(184, 149, 58, 0.4);
     margin: 2rem 0;
   }
-
+ 
   .hero-quote {
     font-size: 1.1rem;
     font-weight: 300;
@@ -270,7 +270,7 @@
     line-height: 1.6;
     max-width: 280px;
   }
-
+ 
   .hero-quote cite {
     display: block;
     margin-top: 0.75rem;
@@ -281,12 +281,12 @@
     font-style: normal;
     color: var(--gold-light);
   }
-
+ 
   /* ── SECTION BASE ── */
   section {
     padding: 6rem 4rem;
   }
-
+ 
   .section-label {
     font-family: 'DM Mono', monospace;
     font-size: 0.68rem;
@@ -298,7 +298,7 @@
     align-items: center;
     gap: 1rem;
   }
-
+ 
   .section-label::after {
     content: '';
     display: block;
@@ -307,13 +307,13 @@
     height: 1px;
     background: var(--gold);
   }
-
+ 
   /* ── SERVICES ── */
   #services {
     border-top: 1px solid var(--border);
     background: var(--white);
   }
-
+ 
   #services h2 {
     font-size: clamp(2.5rem, 4vw, 4rem);
     font-weight: 300;
@@ -321,27 +321,27 @@
     margin-bottom: 4rem;
     max-width: 600px;
   }
-
+ 
   #services h2 em { font-style: italic; color: var(--gold); }
-
+ 
   .services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0;
     border: 1px solid var(--border);
   }
-
+ 
   .service-card {
     padding: 2.5rem;
     border-right: 1px solid var(--border);
     transition: background 0.3s;
     position: relative;
   }
-
+ 
   .service-card:last-child { border-right: none; }
-
+ 
   .service-card:hover { background: var(--paper); }
-
+ 
   .service-num {
     font-family: 'DM Mono', monospace;
     font-size: 0.65rem;
@@ -349,21 +349,21 @@
     color: var(--gold);
     margin-bottom: 1.5rem;
   }
-
+ 
   .service-card h3 {
     font-size: 1.5rem;
     font-weight: 400;
     margin-bottom: 1rem;
     line-height: 1.2;
   }
-
+ 
   .service-card p {
     font-size: 1rem;
     font-weight: 300;
     color: var(--muted);
     line-height: 1.7;
   }
-
+ 
   /* ── ABOUT ── */
   #about {
     border-top: 1px solid var(--border);
@@ -372,16 +372,16 @@
     gap: 6rem;
     align-items: center;
   }
-
+ 
   #about h2 {
     font-size: clamp(2rem, 3.5vw, 3.5rem);
     font-weight: 300;
     line-height: 1.1;
     margin-bottom: 1.5rem;
   }
-
+ 
   #about h2 em { font-style: italic; color: var(--gold); }
-
+ 
   #about p {
     font-size: 1.1rem;
     font-weight: 300;
@@ -389,13 +389,13 @@
     line-height: 1.8;
     margin-bottom: 1rem;
   }
-
+ 
   .about-details {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
   }
-
+ 
   .about-item {
     display: flex;
     gap: 1.5rem;
@@ -403,9 +403,9 @@
     padding-bottom: 1.5rem;
     border-bottom: 1px solid var(--border);
   }
-
+ 
   .about-item:last-child { border-bottom: none; }
-
+ 
   .about-item-label {
     font-family: 'DM Mono', monospace;
     font-size: 0.65rem;
@@ -416,14 +416,14 @@
     padding-top: 0.2rem;
     min-width: 100px;
   }
-
+ 
   .about-item-val {
     font-size: 1rem;
     font-weight: 300;
     color: var(--ink);
     line-height: 1.6;
   }
-
+ 
   /* ── CONTACT ── */
   #contact {
     border-top: 1px solid var(--border);
@@ -431,10 +431,10 @@
     color: var(--white);
     text-align: center;
   }
-
+ 
   #contact .section-label { justify-content: center; color: var(--gold-light); }
   #contact .section-label::after { display: none; }
-
+ 
   #contact h2 {
     font-size: clamp(2.5rem, 4vw, 4rem);
     font-weight: 300;
@@ -442,16 +442,16 @@
     margin-bottom: 1rem;
     color: var(--white);
   }
-
+ 
   #contact h2 em { font-style: italic; color: var(--gold-light); }
-
+ 
   #contact p {
     font-size: 1.1rem;
     font-weight: 300;
     color: rgba(253,252,248,0.5);
     margin-bottom: 3rem;
   }
-
+ 
   .contact-links {
     display: flex;
     gap: 3rem;
@@ -459,7 +459,7 @@
     align-items: center;
     flex-wrap: wrap;
   }
-
+ 
   .contact-link {
     display: flex;
     flex-direction: column;
@@ -468,9 +468,9 @@
     text-decoration: none;
     transition: transform 0.2s;
   }
-
+ 
   .contact-link:hover { transform: translateY(-3px); }
-
+ 
   .contact-link-label {
     font-family: 'DM Mono', monospace;
     font-size: 0.6rem;
@@ -478,13 +478,13 @@
     text-transform: uppercase;
     color: var(--gold-light);
   }
-
+ 
   .contact-link-val {
     font-size: 1rem;
     font-weight: 300;
     color: var(--white);
   }
-
+ 
   /* ── FOOTER ── */
   footer {
     background: var(--ink);
@@ -494,44 +494,44 @@
     justify-content: space-between;
     align-items: center;
   }
-
+ 
   footer p {
     font-family: 'DM Mono', monospace;
     font-size: 0.65rem;
     letter-spacing: 0.1em;
     color: rgba(253,252,248,0.25);
   }
-
+ 
   footer span { color: var(--gold); opacity: 0.5; }
-
+ 
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-
+ 
   @keyframes fadeDown {
     from { opacity: 0; transform: translateY(-12px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-
+ 
   @keyframes fadeIn {
     from { opacity: 0; }
     to   { opacity: 1; }
   }
-
+ 
   /* scroll reveal */
   .reveal {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
-
+ 
   .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
-
+ 
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     header { padding: 1.5rem 2rem; }
@@ -551,7 +551,7 @@
 </style>
 </head>
 <body>
-
+ 
 <!-- HEADER -->
 <header>
   <div class="logo">Invictus<span>.</span></div>
@@ -561,7 +561,7 @@
     <a href="#contact" class="nav-cta">Contact</a>
   </nav>
 </header>
-
+ 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
@@ -588,7 +588,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- SERVICES -->
 <section id="services">
   <div class="section-label">What we do</div>
@@ -611,7 +611,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- ABOUT -->
 <section id="about">
   <div class="reveal">
@@ -641,7 +641,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-label">Get in touch</div>
@@ -662,13 +662,13 @@
     </a>
   </div>
 </section>
-
+ 
 <!-- FOOTER -->
 <footer>
   <p>&copy; 2026 Invictus Marketing Agency — Daniel Whigham</p>
   <p>St. Johns, Florida <span>·</span> All rights reserved</p>
 </footer>
-
+ 
 <script>
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
@@ -682,6 +682,6 @@
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 </script>
-
+ 
 </body>
 </html>
