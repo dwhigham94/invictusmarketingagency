@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms & Conditions — BookdAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --off-white: #f4f1eb;
+    --cream: #ede9e1;
+    --accent: #c8f04d;
+    --muted: #6b6b5e;
+    --border: rgba(255,255,255,0.08);
+    --surface: rgba(255,255,255,0.03);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--black);
+    color: var(--off-white);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    color: var(--off-white);
+    text-decoration: none;
+  }
+
+  .logo span { color: var(--accent); }
+
+  .effective {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .page-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 6rem;
+  }
+
+  .page-header {
+    margin-bottom: 3.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-header .label {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .page-header h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .page-header p {
+    color: #a0a090;
+    font-weight: 300;
+    font-size: 1rem;
+    max-width: 560px;
+  }
+
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 3rem;
+  }
+
+  .toc p {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.85rem;
+  }
+
+  .toc ol {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.3rem;
+  }
+
+  .toc ol li a {
+    font-size: 0.875rem;
+    color: #a0a090;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .toc ol li a:hover { color: var(--accent); }
+
+  .toc ol li::before {
+    content: attr(data-num) ". ";
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  section.term-section {
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section.term-section:last-of-type {
+    border-bottom: none;
+  }
+
+  .section-num {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: #c0c0b0;
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  p strong {
+    color: var(--off-white);
+    font-weight: 500;
+  }
+
+  ul, ol {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  ul li, ol li {
+    font-size: 0.95rem;
+    color: #c0c0b0;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+    line-height: 1.65;
+  }
+
+  ul li strong, ol li strong {
+    color: var(--off-white);
+    font-weight: 500;
+  }
+
+  .highlight-box {
+    background: rgba(200,240,77,0.06);
+    border: 1px solid rgba(200,240,77,0.2);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.25rem 0;
+  }
+
+  .highlight-box p {
+    color: #d8d8c0;
+    margin-bottom: 0;
+    font-size: 0.9rem;
+  }
+
+  .highlight-box p:not(:last-child) { margin-bottom: 0.6rem; }
+
+  .plan-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.875rem;
+  }
+
+  .plan-table th {
+    text-align: left;
+    padding: 0.65rem 1rem;
+    font-weight: 500;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .plan-table td {
+    padding: 0.75rem 1rem;
+    color: #c0c0b0;
+    font-weight: 300;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .plan-table tr.popular td {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .warn-box {
+    background: rgba(255,80,80,0.05);
+    border: 1px solid rgba(255,80,80,0.15);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.25rem 0;
+  }
+
+  .warn-box p {
+    color: #e0a0a0;
+    margin-bottom: 0;
+    font-size: 0.9rem;
+  }
+
+  .contact-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  .contact-box h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-box p {
+    color: #a0a090;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-box a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer p { font-size: 0.8rem; color: var(--muted); }
+
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.25rem; }
+    .page-wrap { padding: 2.5rem 1.25rem 4rem; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">bookd<span>.ai</span></a>
+  <span class="effective">Effective May 4, 2026</span>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="page-header">
+    <span class="label">Legal</span>
+    <h1>Terms &amp; Conditions</h1>
+    <p>Please read these terms carefully before signing up for BookdAI services. By enrolling, you acknowledge and agree to all terms below.</p>
+  </div>
+
+  <div class="toc">
+    <p>Contents</p>
+    <ol>
+      <li data-num="1"><a href="#parties">Parties &amp; Agreement</a></li>
+      <li data-num="2"><a href="#services">Services Provided</a></li>
+      <li data-num="3"><a href="#pricing">Plans &amp; Pricing</a></li>
+      <li data-num="4"><a href="#payment">Payment Terms</a></li>
+      <li data-num="5"><a href="#guarantee">Performance Guarantee</a></li>
+      <li data-num="6"><a href="#responsibilities">Client Responsibilities</a></li>
+      <li data-num="7"><a href="#compliance">Compliance &amp; TCPA</a></li>
+      <li data-num="8"><a href="#cancellation">Cancellation Policy</a></li>
+      <li data-num="9"><a href="#confidentiality">Confidentiality</a></li>
+      <li data-num="10"><a href="#liability">Limitation of Liability</a></li>
+      <li data-num="11"><a href="#governing">Governing Law</a></li>
+      <li data-num="12"><a href="#entire">Entire Agreement</a></li>
+    </ol>
+  </div>
+
+  <!-- 1 -->
+  <section class="term-section" id="parties">
+    <span class="section-num">Section 01</span>
+    <h2>Parties &amp; Agreement</h2>
+    <p>This Terms &amp; Conditions Agreement ("Agreement") is entered into between <strong>Invictus Marketing Group LLC</strong>, operating as <strong>BookdAI</strong> ("we," "us," "BookdAI"), and the individual or business entity completing enrollment ("Client," "you").</p>
+    <p>By signing up for BookdAI services — whether through a digital form, DocuSign agreement, or any other enrollment method — you confirm that you have read, understood, and agree to be bound by these terms in full.</p>
+  </section>
+
+  <!-- 2 -->
+  <section class="term-section" id="services">
+    <span class="section-num">Section 02</span>
+    <h2>Services Provided</h2>
+    <p>BookdAI provides a done-for-you appointment setting system for health and life insurance agents. Services included in your plan are:</p>
+    <ul>
+      <li><strong>Lead Data</strong> — Fresh, digitally opted-in lead records sourced and delivered weekly based on your selected plan. No extra charge.</li>
+      <li><strong>AI Texting Pipeline</strong> — AI-powered SMS outreach conducted via your dedicated phone number.</li>
+      <li><strong>Ghost Re-engage</strong> — Multi-touch automated follow-up sequences for non-responding leads.</li>
+      <li><strong>Drip Sequences</strong> — Long-term automated nurture campaigns for aged and stale leads.</li>
+      <li><strong>AI Qualification</strong> — AI bot qualifies prospects prior to booking to ensure appointment quality.</li>
+      <li><strong>Direct Calendar Booking</strong> — Confirmed appointments booked directly into your connected calendar.</li>
+      <li><strong>Hot Lead List</strong> — Daily list of warm, opted-in leads generated for your direct outreach.</li>
+      <li><strong>Lead Re-engagement Queue</strong> — Opted-in leads are automatically cycled back through re-engagement sequences.</li>
+      <li><strong>GHL Setup &amp; Management</strong> — Full system setup and ongoing management inside your GoHighLevel (GHL) sub-account.</li>
+      <li><strong>Texting Costs Included</strong> — All SMS messaging costs are included in your weekly plan fee. No separate texting charges apply.</li>
+    </ul>
+  </section>
+
+  <!-- 3 -->
+  <section class="term-section" id="pricing">
+    <span class="section-num">Section 03</span>
+    <h2>Plans &amp; Pricing</h2>
+    <p>BookdAI offers four service tiers. All plans are all-inclusive — no texting fees, no data fees, no hidden charges.</p>
+
+    <table class="plan-table">
+      <thead>
+        <tr>
+          <th>Plan</th>
+          <th>Weekly Fee</th>
+          <th>Monthly Est.</th>
+          <th>Records/Week</th>
+          <th>Booked Apts/Wk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Starter</td>
+          <td>$300/wk</td>
+          <td>~$1,300/mo</td>
+          <td>5,000</td>
+          <td>5–10</td>
+        </tr>
+        <tr class="popular">
+          <td>Growth ★</td>
+          <td>$500/wk</td>
+          <td>~$2,165/mo</td>
+          <td>7,500</td>
+          <td>12–18</td>
+        </tr>
+        <tr>
+          <td>Pro</td>
+          <td>$700/wk</td>
+          <td>~$3,033/mo</td>
+          <td>10,000</td>
+          <td>18–25</td>
+        </tr>
+        <tr>
+          <td>Elite</td>
+          <td>$1,000/wk</td>
+          <td>~$4,330/mo</td>
+          <td>15,000+</td>
+          <td>25–35</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="highlight-box">
+      <p><strong>Founder Pricing Notice:</strong> Current pricing is available to the first 10 clients only. Founder pricing is locked for life as long as your service remains active and in good standing. If service is cancelled, the Founder rate is permanently forfeited. Re-enrollment will be at the then-current standard rate. Founder pricing is non-transferable.</p>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="term-section" id="payment">
+    <span class="section-num">Section 04</span>
+    <h2>Payment Terms</h2>
+    <ul>
+      <li>Your weekly fee is billed automatically every 7 days via Stripe, beginning on your service start date.</li>
+      <li>By enrolling, you authorize BookdAI to charge your payment method on file on a recurring weekly basis.</li>
+      <li>Failed or declined payments must be resolved within <strong>48 hours</strong> or your service will be paused until payment is received.</li>
+      <li>A <strong>30-day minimum commitment</strong> is required from your service start date. You may not cancel before 30 days have elapsed.</li>
+      <li><strong>No refunds</strong> will be issued once service has been activated and lead data has been delivered, regardless of circumstance.</li>
+      <li>All SMS texting costs are included in your weekly plan fee. There are no additional per-message or carrier charges billed to you.</li>
+    </ul>
+  </section>
+
+  <!-- 5 -->
+  <section class="term-section" id="guarantee">
+    <span class="section-num">Section 05</span>
+    <h2>Performance Guarantee</h2>
+    <p>BookdAI stands behind its system. If you meet <strong>all</strong> of the following conditions and still book zero appointments within 30 days, BookdAI will work with you at no additional charge to diagnose and resolve the issue:</p>
+    <ul>
+      <li>You complete full GHL onboarding within 48 hours of service activation.</li>
+      <li>You show up to every booked appointment for 30 consecutive days.</li>
+      <li>You actively work your daily hot lead list every business day.</li>
+      <li>Zero appointments are booked in the 30-day period.</li>
+    </ul>
+    <div class="warn-box">
+      <p><strong>Important:</strong> This guarantee does not apply if any of the above conditions are not fully met. BookdAI does not guarantee specific appointment volume, show rates, or closed deal amounts, as these are dependent on client performance, market conditions, and lead quality.</p>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="term-section" id="responsibilities">
+    <span class="section-num">Section 06</span>
+    <h2>Client Responsibilities</h2>
+    <p>As a BookdAI client, you agree to the following:</p>
+    <ul>
+      <li>Complete your GHL account onboarding within <strong>48 hours</strong> of agreement execution.</li>
+      <li>Show up to all appointments booked by the BookdAI system. No-shows without notice undermine the system's effectiveness and are your responsibility.</li>
+      <li>Actively work the daily hot lead list provided to you each business day.</li>
+      <li>Not share, resell, sublicense, or white-label any BookdAI systems, sequences, workflows, or processes without prior written consent from BookdAI.</li>
+    </ul>
+  </section>
+
+  <!-- 7 -->
+  <section class="term-section" id="compliance">
+    <span class="section-num">Section 07</span>
+    <h2>Compliance &amp; TCPA</h2>
+    <p>All leads provided by BookdAI are sourced from digitally opted-in contacts. By enrolling, you acknowledge and agree to the following:</p>
+    <ul>
+      <li>You will honor all opt-out requests immediately and without exception upon receipt.</li>
+      <li>BookdAI is not liable for any client misuse of the texting platform, including but not limited to sending messages to individuals who have opted out or engaging in unlawful messaging practices.</li>
+      <li>You will not use the BookdAI system for any unlawful purpose, including any violation of the Telephone Consumer Protection Act (TCPA), CAN-SPAM Act, or any applicable federal, state, or local regulations.</li>
+      <li>You accept full legal responsibility for your use of the platform and all outbound communications sent through your account.</li>
+    </ul>
+  </section>
+
+  <!-- 8 -->
+  <section class="term-section" id="cancellation">
+    <span class="section-num">Section 08</span>
+    <h2>Cancellation Policy</h2>
+    <ul>
+      <li>After the initial 30-day minimum commitment, you may cancel by providing <strong>7 days written notice</strong> to BookdAI via email.</li>
+      <li>Cancellation takes effect at the end of the current billing week. Service continues through the final paid week.</li>
+      <li>No refunds will be issued for the current or any prior billing period.</li>
+      <li>Any chargeback filed by a client will result in <strong>immediate service termination</strong> and permanent forfeiture of future access to BookdAI services.</li>
+      <li>Founder pricing is non-transferable. If service is cancelled for any reason, the Founder rate is permanently forfeited. Re-enrollment will be at the current standard rate at time of re-enrollment.</li>
+    </ul>
+  </section>
+
+  <!-- 9 -->
+  <section class="term-section" id="confidentiality">
+    <span class="section-num">Section 09</span>
+    <h2>Confidentiality</h2>
+    <p>Both parties agree to maintain strict confidentiality regarding proprietary systems, messaging sequences, lead sources, pricing structures, and any other non-public business information shared in connection with this Agreement.</p>
+    <p>Client specifically agrees not to reverse-engineer, replicate, reproduce, or disclose any BookdAI systems, automation workflows, messaging sequences, or processes to any third party, competitor, or individual not party to this Agreement.</p>
+  </section>
+
+  <!-- 10 -->
+  <section class="term-section" id="liability">
+    <span class="section-num">Section 10</span>
+    <h2>Limitation of Liability</h2>
+    <p>BookdAI guarantees delivery of the system and lead volume as described in your selected plan. BookdAI does <strong>not</strong> guarantee specific appointment numbers, show rates, or closed deal revenue, as these outcomes depend on client performance, market conditions, and lead data quality beyond our control.</p>
+    <p>BookdAI's total liability to Client under any circumstance shall not exceed the total fees paid by Client in the <strong>prior 30 days</strong> from the date of any claim.</p>
+    <p>BookdAI shall not be liable for any indirect, incidental, consequential, or punitive damages of any kind, including but not limited to lost revenue, lost profits, or business interruption.</p>
+  </section>
+
+  <!-- 11 -->
+  <section class="term-section" id="governing">
+    <span class="section-num">Section 11</span>
+    <h2>Governing Law</h2>
+    <p>This Agreement shall be governed by and construed in accordance with the laws of the state in which Invictus Marketing Group LLC is registered, without regard to conflict of law principles.</p>
+    <p>Any dispute, claim, or controversy arising out of or relating to this Agreement shall be resolved through <strong>binding arbitration</strong>, and both parties waive the right to a jury trial or class action proceeding in connection with any such dispute.</p>
+  </section>
+
+  <!-- 12 -->
+  <section class="term-section" id="entire">
+    <span class="section-num">Section 12</span>
+    <h2>Entire Agreement</h2>
+    <p>This Agreement, together with any signed Client Service Agreement and plan selection, constitutes the entire understanding between the parties regarding the subject matter herein and supersedes all prior discussions, representations, or agreements, whether written or oral.</p>
+    <p>Any modifications to these terms must be made in writing and signed by both parties to be valid. BookdAI reserves the right to update these Terms &amp; Conditions at any time. Continued use of the service following notice of updates constitutes acceptance of the revised terms.</p>
+  </section>
+
+  <div class="contact-box">
+    <h3>Questions before signing up?</h3>
+    <p>We're happy to walk you through anything in these terms.</p>
+    <p><a href="mailto:support@bookdai.com">support@bookdai.com</a> &nbsp;|&nbsp; <a href="https://bookdai.com">bookdai.com</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <a href="/" style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: #f4f1eb; text-decoration: none;">bookd<span style="color: #c8f04d;">.ai</span></a>
+  <p>&copy; 2026 Invictus Marketing Group LLC. All rights reserved.</p>
+  <p style="color: #6b6b5e; font-size: 0.8rem;">Effective May 4, 2026</p>
+</footer>
+
+</body>
+</html>
