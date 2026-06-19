@@ -1,876 +1,689 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BookdAI — Always Booked. Always Closing.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #030806;
-      --surface: #080f09;
-      --surface2: #0d1a0f;
-      --border: #162419;
-      --green: #00ff7f;
-      --green-mid: #00cc60;
-      --green-dark: #009944;
-      --green-glow: rgba(0,255,127,0.10);
-      --green-glow2: rgba(0,255,127,0.05);
-      --text: #dff2e6;
-      --muted: #6b9278;
-      --muted2: #3d6347;
-      --white: #f0faf3;
-      --red: #ff4f4f;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Outfit', sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* GRID TEXTURE */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,255,127,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,255,127,0.025) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,255,127,0.07) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 50% at 100% 100%, rgba(0,255,127,0.04) 0%, transparent 55%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px 56px;
-      background: rgba(3,8,6,0.88);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.7rem;
-      color: var(--green);
-      text-decoration: none;
-      letter-spacing: 2px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--green); }
-
-    .nav-cta {
-      background: var(--green);
-      color: #030806;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 0.82rem;
-      padding: 10px 24px;
-      border-radius: 4px;
-      text-decoration: none;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      transition: background 0.2s, transform 0.1s;
-    }
-
-    .nav-cta:hover { background: var(--green-mid); transform: translateY(-1px); }
-
-    /* ── HERO ── */
-    .hero {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 60px;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 100px 56px 90px;
-    }
-
-    .hero-left {}
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--green-glow);
-      border: 1px solid rgba(0,255,127,0.2);
-      border-radius: 3px;
-      padding: 5px 14px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--green);
-      margin-bottom: 28px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .hero-badge .dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 8px var(--green);
-      animation: blink 2s infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
-    .hero h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3.5rem, 6vw, 5.5rem);
-      line-height: 0.95;
-      letter-spacing: 1px;
-      color: var(--white);
-      margin-bottom: 24px;
-    }
-
-    .hero h1 .accent { color: var(--green); }
-
-    .hero p {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 420px;
-      margin-bottom: 40px;
-      font-weight: 300;
-      line-height: 1.7;
-    }
-
-    .hero-btns {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      background: var(--green);
-      color: #030806;
-      font-weight: 700;
-      font-size: 0.88rem;
-      padding: 14px 28px;
-      border-radius: 4px;
-      text-decoration: none;
-      letter-spacing: 0.3px;
-      transition: background 0.2s, transform 0.1s;
-      text-transform: uppercase;
-    }
-
-    .btn-primary:hover { background: var(--green-mid); transform: translateY(-2px); }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--muted);
-      font-weight: 500;
-      font-size: 0.88rem;
-      padding: 14px 28px;
-      border-radius: 4px;
-      border: 1px solid var(--border);
-      text-decoration: none;
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .btn-ghost:hover { border-color: var(--green); color: var(--green); }
-
-    /* Hero right — terminal card */
-    .hero-terminal {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 80px rgba(0,255,127,0.06), 0 24px 64px rgba(0,0,0,0.5);
-    }
-
-    .terminal-bar {
-      background: var(--surface2);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .t-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .t-dot.r { background: #ff5f57; }
-    .t-dot.y { background: #ffbd2e; }
-    .t-dot.g { background: #28ca41; }
-
-    .terminal-body { padding: 24px; font-size: 0.82rem; font-family: 'Courier New', monospace; }
-
-    .t-line { margin-bottom: 10px; display: flex; gap: 8px; }
-    .t-label { color: var(--green); min-width: 80px; font-weight: 600; }
-    .t-val { color: var(--text); }
-    .t-val.dim { color: var(--muted); }
-    .t-val.hi { color: var(--green); }
-
-    .t-divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
-
-    .t-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(0,255,127,0.08);
-      border: 1px solid rgba(0,255,127,0.2);
-      border-radius: 3px;
-      padding: 3px 10px;
-      font-size: 0.75rem;
-      color: var(--green);
-      letter-spacing: 1px;
-    }
-
-    .t-status::before {
-      content: '';
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: var(--green);
-      animation: blink 1.5s infinite;
-    }
-
-    /* ── STATS BAR ── */
-    .stats-bar {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-      display: flex;
-      justify-content: center;
-    }
-
-    .stats-inner {
-      display: flex;
-      max-width: 1100px;
-      width: 100%;
-    }
-
-    .stat {
-      flex: 1;
-      padding: 32px 24px;
-      text-align: center;
-      border-right: 1px solid var(--border);
-    }
-
-    .stat:last-child { border-right: none; }
-
-    .stat .num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.6rem;
-      color: var(--green);
-      letter-spacing: 1px;
-      line-height: 1;
-    }
-
-    .stat .lbl {
-      font-size: 0.78rem;
-      color: var(--muted);
-      font-weight: 400;
-      margin-top: 4px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    /* ── SECTIONS ── */
-    .section {
-      position: relative;
-      z-index: 1;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 96px 56px;
-    }
-
-    .section-tag {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 14px;
-    }
-
-    .section h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.4rem, 4vw, 3.6rem);
-      color: var(--white);
-      letter-spacing: 1px;
-      line-height: 1;
-      margin-bottom: 56px;
-    }
-
-    /* ── STEPS ── */
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .step {
-      background: var(--surface);
-      padding: 36px 28px;
-      position: relative;
-      transition: background 0.2s;
-    }
-
-    .step:hover { background: var(--surface2); }
-
-    .step-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 3.5rem;
-      color: rgba(0,255,127,0.1);
-      line-height: 1;
-      margin-bottom: 16px;
-    }
-
-    .step h3 {
-      font-weight: 600;
-      font-size: 1rem;
-      color: var(--white);
-      margin-bottom: 10px;
-    }
-
-    .step p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    /* ── FEATURES ── */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .feature {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 30px;
-      transition: border-color 0.2s, background 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(0,255,127,0.2), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .feature:hover { border-color: rgba(0,255,127,0.25); background: var(--surface2); }
-    .feature:hover::after { opacity: 1; }
-
-    .feat-icon {
-      font-size: 1.5rem;
-      margin-bottom: 16px;
-    }
-
-    .feature h3 {
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--white);
-      margin-bottom: 8px;
-    }
-
-    .feature p {
-      font-size: 0.84rem;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    /* ── DIVIDER ── */
-    .divider {
-      position: relative;
-      z-index: 1;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 56px;
-    }
-
-    .divider hr {
-      border: none;
-      border-top: 1px solid var(--border);
-    }
-
-    /* ── OPT-IN FORM ── */
-    .optin-wrap {
-      position: relative;
-      z-index: 1;
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 96px 24px 112px;
-    }
-
-    .optin-card {
-      background: var(--surface);
-      border: 1px solid rgba(0,255,127,0.18);
-      border-radius: 12px;
-      padding: 52px 48px;
-      box-shadow: 0 0 100px rgba(0,255,127,0.05), 0 32px 80px rgba(0,0,0,0.6);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .optin-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 15%; right: 15%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--green), transparent);
-    }
-
-    .optin-card .section-tag { margin-bottom: 10px; }
-
-    .optin-card h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.6rem;
-      color: var(--white);
-      letter-spacing: 1px;
-      line-height: 1;
-      margin-bottom: 10px;
-    }
-
-    .optin-card .sub {
-      font-size: 0.88rem;
-      color: var(--muted);
-      margin-bottom: 36px;
-      font-weight: 300;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .form-group.full { grid-column: 1 / -1; }
-
-    .form-group label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--muted);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .form-group input {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 13px 16px;
-      color: var(--text);
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s, background 0.2s;
-      width: 100%;
-    }
-
-    .form-group input:focus {
-      border-color: rgba(0,255,127,0.35);
-      background: rgba(0,255,127,0.02);
-    }
-
-    .form-group input::placeholder { color: var(--muted2); }
-
-    /* ── CONSENT BLOCK (COMPLIANT) ── */
-    .consent-block {
-      margin: 22px 0 28px;
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      padding: 16px;
-      background: rgba(0,255,127,0.03);
-      border: 1px solid rgba(0,255,127,0.1);
-      border-radius: 6px;
-    }
-
-    .consent-block input[type="checkbox"] {
-      width: 17px;
-      height: 17px;
-      min-width: 17px;
-      margin-top: 2px;
-      accent-color: var(--green);
-      cursor: pointer;
-      /* NOT required — optional per A2P compliance */
-    }
-
-    .consent-text {
-      font-size: 0.76rem;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    .consent-text strong { color: var(--text); font-weight: 600; }
-
-    .consent-optional-tag {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--muted2);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      padding: 1px 6px;
-      margin-left: 6px;
-      vertical-align: middle;
-    }
-
-    .submit-btn {
-      width: 100%;
-      background: var(--green);
-      color: #030806;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      padding: 17px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      transition: background 0.2s, transform 0.1s;
-    }
-
-    .submit-btn:hover { background: var(--green-mid); transform: translateY(-1px); }
-    .submit-btn:active { transform: scale(0.99); }
-
-    .fine-print {
-      margin-top: 18px;
-      font-size: 0.72rem;
-      color: var(--muted2);
-      text-align: center;
-      line-height: 1.65;
-    }
-
-    .fine-print a { color: var(--green); text-decoration: none; }
-    .fine-print a:hover { text-decoration: underline; }
-
-    /* ── SUCCESS ── */
-    .success-msg {
-      display: none;
-      text-align: center;
-      padding: 40px 0;
-    }
-
-    .success-msg .check {
-      font-size: 3rem;
-      margin-bottom: 18px;
-    }
-
-    .success-msg h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2rem;
-      color: var(--green);
-      letter-spacing: 1px;
-      margin-bottom: 10px;
-    }
-
-    .success-msg p {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid var(--border);
-      background: var(--surface);
-      padding: 36px 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    footer p {
-      font-size: 0.78rem;
-      color: var(--muted2);
-    }
-
-    footer nav {
-      display: flex;
-      gap: 24px;
-    }
-
-    footer nav a {
-      font-size: 0.78rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    footer nav a:hover { color: var(--green); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 16px 24px; }
-      .nav-links { display: none; }
-      .hero { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
-      .steps { grid-template-columns: 1fr 1fr; }
-      .features { grid-template-columns: 1fr 1fr; }
-      .section { padding: 64px 24px; }
-      .divider { padding: 0 24px; }
-      footer { padding: 28px 24px; flex-direction: column; align-items: flex-start; }
-    }
-
-    @media (max-width: 580px) {
-      .stats-inner { flex-wrap: wrap; }
-      .stat { flex: 1 1 50%; border-bottom: 1px solid var(--border); }
-      .steps { grid-template-columns: 1fr; }
-      .features { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .optin-card { padding: 32px 22px; }
-      .hero h1 { font-size: 3rem; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invictus Marketing Agency — Daniel Whigham</title>
+<meta name="description" content="Invictus Marketing Agency — Independent insurance marketing and client acquisition. Led by Daniel Whigham.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0A0A08;
+    --paper: #F4F1EA;
+    --gold: #B8953A;
+    --gold-light: #D4AF62;
+    --muted: #7A776E;
+    --border: #D8D3C8;
+    --white: #FDFCF8;
+  }
+ 
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+ 
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.4;
+  }
+ 
+  /* ── HEADER ── */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: rgba(244, 241, 234, 0.92);
+    backdrop-filter: blur(12px);
+    z-index: 50;
+    animation: fadeDown 0.8s ease both;
+  }
+ 
+  .logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+ 
+  .logo span {
+    color: var(--gold);
+  }
+ 
+  nav {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+  }
+ 
+  nav a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+ 
+  nav a:hover { color: var(--ink); }
+ 
+  .nav-cta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white) !important;
+    background: var(--ink);
+    padding: 0.6rem 1.4rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+ 
+  .nav-cta:hover { background: var(--gold) !important; color: var(--white) !important; }
+ 
+  /* ── HERO ── */
+  .hero {
+    min-height: 88vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+ 
+  .hero-left {
+    padding: 7rem 4rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+ 
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+ 
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+ 
+  h1 {
+    font-size: clamp(3.5rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    color: var(--ink);
+  }
+ 
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+ 
+  .hero-sub {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 420px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+ 
+  .hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+ 
+  .btn-primary {
+    background: var(--ink);
+    color: var(--white);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 1rem 2.2rem;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+ 
+  .btn-primary:hover {
+    background: var(--gold);
+    transform: translateY(-1px);
+  }
+ 
+  .btn-ghost {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+ 
+  .btn-ghost:hover { color: var(--ink); border-color: var(--ink); }
+ 
+  /* ── HERO RIGHT — decorative panel ── */
+  .hero-right {
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1.2s 0.4s ease both;
+  }
+ 
+  .hero-right::before {
+    content: 'INVICTUS';
+    position: absolute;
+    bottom: -2rem;
+    right: -1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10rem;
+    font-weight: 600;
+    color: rgba(184, 149, 58, 0.08);
+    letter-spacing: -0.05em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+ 
+  .hero-right-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 3.5rem;
+  }
+ 
+  .hero-stat {
+    margin-bottom: 2rem;
+  }
+ 
+  .hero-stat-num {
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+ 
+  .hero-stat-num span {
+    color: var(--gold-light);
+  }
+ 
+  .hero-stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(253, 252, 248, 0.4);
+  }
+ 
+  .hero-divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(184, 149, 58, 0.4);
+    margin: 2rem 0;
+  }
+ 
+  .hero-quote {
+    font-size: 1.1rem;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(253, 252, 248, 0.6);
+    line-height: 1.6;
+    max-width: 280px;
+  }
+ 
+  .hero-quote cite {
+    display: block;
+    margin-top: 0.75rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-style: normal;
+    color: var(--gold-light);
+  }
+ 
+  /* ── SECTION BASE ── */
+  section {
+    padding: 6rem 4rem;
+  }
+ 
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+ 
+  .section-label::after {
+    content: '';
+    display: block;
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--gold);
+  }
+ 
+  /* ── SERVICES ── */
+  #services {
+    border-top: 1px solid var(--border);
+    background: var(--white);
+  }
+ 
+  #services h2 {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 4rem;
+    max-width: 600px;
+  }
+ 
+  #services h2 em { font-style: italic; color: var(--gold); }
+ 
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+ 
+  .service-card {
+    padding: 2.5rem;
+    border-right: 1px solid var(--border);
+    transition: background 0.3s;
+    position: relative;
+  }
+ 
+  .service-card:last-child { border-right: none; }
+ 
+  .service-card:hover { background: var(--paper); }
+ 
+  .service-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+ 
+  .service-card h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+ 
+  .service-card p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+ 
+  /* ── ABOUT ── */
+  #about {
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+ 
+  #about h2 {
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+ 
+  #about h2 em { font-style: italic; color: var(--gold); }
+ 
+  #about p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+ 
+  .about-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+ 
+  .about-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+ 
+  .about-item:last-child { border-bottom: none; }
+ 
+  .about-item-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+    padding-top: 0.2rem;
+    min-width: 100px;
+  }
+ 
+  .about-item-val {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+ 
+  /* ── CONTACT ── */
+  #contact {
+    border-top: 1px solid var(--border);
+    background: var(--ink);
+    color: var(--white);
+    text-align: center;
+  }
+ 
+  #contact .section-label { justify-content: center; color: var(--gold-light); }
+  #contact .section-label::after { display: none; }
+ 
+  #contact h2 {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: var(--white);
+  }
+ 
+  #contact h2 em { font-style: italic; color: var(--gold-light); }
+ 
+  #contact p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba(253,252,248,0.5);
+    margin-bottom: 3rem;
+  }
+ 
+  .contact-links {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+ 
+  .contact-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+ 
+  .contact-link:hover { transform: translateY(-3px); }
+ 
+  .contact-link-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+  }
+ 
+  .contact-link-val {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--white);
+  }
+ 
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+ 
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: rgba(253,252,248,0.25);
+  }
+ 
+  footer span { color: var(--gold); opacity: 0.5; }
+ 
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+ 
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+ 
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+ 
+  /* scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+ 
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+ 
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    header { padding: 1.5rem 2rem; }
+    nav { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 4rem 2rem 3rem; }
+    .hero-right { min-height: 300px; }
+    section { padding: 4rem 2rem; }
+    #services { padding: 4rem 2rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { border-right: none; border-bottom: 1px solid var(--border); }
+    .service-card:last-child { border-bottom: none; }
+    #about { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 2rem; }
+    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    .contact-links { gap: 2rem; }
+  }
+</style>
 </head>
 <body>
-
-  <!-- NAV -->
+ 
+<!-- HEADER -->
+<header>
+  <div class="logo">Invictus<span>.</span></div>
   <nav>
-    <a class="logo" href="#">BOOKD.AI</a>
-    <ul class="nav-links">
-      <li><a href="#how">How it works</a></li>
-      <li><a href="#features">Features</a></li>
-      <li><a href="#signup">Pricing</a></li>
-    </ul>
-    <a class="nav-cta" href="#signup">Get Early Access</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact" class="nav-cta">Contact</a>
   </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-left">
-      <div class="hero-badge"><span class="dot"></span>Built for Insurance Agents</div>
-      <h1>Your leads.<br><span class="accent">Auto-booked.</span><br>Every day.</h1>
-      <p>BookdAI turns your lead list into a calendar full of confirmed appointments — using AI that follows up, qualifies, and books for you 24/7.</p>
-      <div class="hero-btns">
-        <a class="btn-primary" href="#signup">Lock In Founder Pricing</a>
-        <a class="btn-ghost" href="#how">See How It Works</a>
-      </div>
-    </div>
-    <div class="hero-terminal">
-      <div class="terminal-bar">
-        <div class="t-dot r"></div>
-        <div class="t-dot y"></div>
-        <div class="t-dot g"></div>
-      </div>
-      <div class="terminal-body">
-        <div class="t-line"><span class="t-label">AGENT</span><span class="t-val hi">Samantha [AI]</span></div>
-        <div class="t-line"><span class="t-label">STATUS</span><span class="t-val"><span class="t-status">LIVE</span></span></div>
-        <hr class="t-divider">
-        <div class="t-line"><span class="t-label">08:01am</span><span class="t-val dim">Lead imported → Marcus T.</span></div>
-        <div class="t-line"><span class="t-label">08:01am</span><span class="t-val hi">SMS sent → "Hey Marcus..."</span></div>
-        <div class="t-line"><span class="t-label">08:04am</span><span class="t-val">Reply received → "Interested"</span></div>
-        <div class="t-line"><span class="t-label">08:06am</span><span class="t-val hi">Qualified ✓ → Booking...</span></div>
-        <div class="t-line"><span class="t-label">08:07am</span><span class="t-val hi">✅ APPT BOOKED — Thu 2pm</span></div>
-        <hr class="t-divider">
-        <div class="t-line"><span class="t-label">TODAY</span><span class="t-val">7 booked &nbsp;·&nbsp; 3 pending &nbsp;·&nbsp; 2 rescheduled</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS BAR -->
-  <div class="stats-bar">
-    <div class="stats-inner">
-      <div class="stat"><div class="num">3×</div><div class="lbl">More Appointments</div></div>
-      <div class="stat"><div class="num">24/7</div><div class="lbl">AI Working Leads</div></div>
-      <div class="stat"><div class="num">&lt;60s</div><div class="lbl">First Follow-Up</div></div>
-      <div class="stat"><div class="num">100%</div><div class="lbl">Done For You</div></div>
+</header>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Invictus Marketing Agency</div>
+    <h1>Client acquisition<br>for <em>insurance</em><br>professionals.</h1>
+    <p class="hero-sub">We connect health insurance brokers with qualified prospects through targeted outreach, AI-assisted follow-up, and conversion-focused communication.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get in touch</a>
+      <a href="#services" class="btn-ghost">Our services</a>
     </div>
   </div>
-
-  <!-- HOW IT WORKS -->
-  <section class="section" id="how">
-    <div class="section-tag">How It Works</div>
-    <h2>Set it up once.<br>Stay booked forever.</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">01</div>
-        <h3>Connect your leads</h3>
-        <p>Upload your lead list or connect your CRM. BookdAI gets to work within seconds of import.</p>
+  <div class="hero-right">
+    <div class="hero-right-content">
+      <div class="hero-stat">
+        <div class="hero-stat-num">Health <span>&amp;</span></div>
+        <div class="hero-stat-num">Life</div>
+        <div class="hero-stat-label">Insurance marketing specialists</div>
       </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <h3>AI does the outreach</h3>
-        <p>Your AI agent texts leads instantly, qualifies them, handles objections, and schedules — on full autopilot.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <h3>Appointments land on your calendar</h3>
-        <p>When a lead is ready, BookdAI books directly into your calendar. You show up and close.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <h3>Scale without limits</h3>
-        <p>50 leads or 5,000 — BookdAI works every single one without burnout or missed follow-ups.</p>
-      </div>
+      <div class="hero-divider"></div>
+      <blockquote class="hero-quote">
+        "Out of the night that covers me, black as the pit from pole to pole — I am the master of my fate."
+        <cite>— W.E. Henley, Invictus</cite>
+      </blockquote>
     </div>
-  </section>
-
-  <div class="divider"><hr></div>
-
-  <!-- FEATURES -->
-  <section class="section" id="features">
-    <div class="section-tag">What's Included</div>
-    <h2>Everything you need.<br>Nothing you don't.</h2>
-    <div class="features">
-      <div class="feature"><div class="feat-icon">⚡</div><h3>Instant Lead Response</h3><p>First text out in under 60 seconds. Speed-to-lead wins deals — BookdAI is always first.</p></div>
-      <div class="feature"><div class="feat-icon">🤖</div><h3>AI-Powered Conversations</h3><p>Trained on real insurance sales conversations. Qualifies, objects, and books — naturally.</p></div>
-      <div class="feature"><div class="feat-icon">📅</div><h3>Automated Booking</h3><p>Syncs with your calendar and confirms appointments without you lifting a finger.</p></div>
-      <div class="feature"><div class="feat-icon">🔁</div><h3>Multi-Touch Follow-Up</h3><p>Day 1, day 3, day 7 — automatic follow-up sequences until they convert or opt out.</p></div>
-      <div class="feature"><div class="feat-icon">📊</div><h3>Live Performance Dashboard</h3><p>See every lead contacted, replied, booked, and converted — in real time.</p></div>
-      <div class="feature"><div class="feat-icon">🛡️</div><h3>TCPA-Compliant by Default</h3><p>Opt-out handling, compliant messaging, and carrier-approved delivery built in from day one.</p></div>
+  </div>
+</section>
+ 
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">What we do</div>
+  <h2>Outreach that <em>converts.</em><br>Follow-up that closes.</h2>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <h3>Lead Outreach</h3>
+      <p>Targeted SMS and multi-channel outreach campaigns designed for health and life insurance prospects. Personalized at scale.</p>
     </div>
-  </section>
-
-  <div class="divider"><hr></div>
-
-  <!-- OPT-IN FORM -->
-  <section class="optin-wrap" id="signup">
-    <div class="optin-card">
-      <div class="section-tag">Get Early Access</div>
-      <h2>Stop chasing leads.<br>Start closing them.</h2>
-      <p class="sub">Founder pricing — first 10 clients only. Lock your rate today.</p>
-
-      <div id="form-wrap">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="fname">First Name</label>
-            <input type="text" id="fname" name="first_name" placeholder="Marcus" required />
-          </div>
-          <div class="form-group">
-            <label for="lname">Last Name</label>
-            <input type="text" id="lname" name="last_name" placeholder="Thompson" required />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group full">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="you@agency.com" required />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group full">
-            <label for="phone">Mobile Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="(904) 555-0100" required />
-          </div>
-        </div>
-
-        <!-- SMS CONSENT — OPTIONAL, A2P COMPLIANT -->
-        <div class="consent-block">
-          <input type="checkbox" id="sms-consent" name="sms_consent" />
-          <label class="consent-text" for="sms-consent">
-            <span class="consent-optional-tag">Optional</span>&nbsp;
-            I consent to receive SMS messages from <strong>Invictus Marketing Group LLC</strong> regarding the BookdAI platform, including product information, demo scheduling, and follow-up communications. Message &amp; data rates may apply. Message frequency varies. Reply <strong>STOP</strong> to cancel. Reply <strong>HELP</strong> for help.
-            <strong>This consent is not required as a condition of receiving any service or making a purchase.</strong>
-          </label>
-        </div>
-
-        <button class="submit-btn" onclick="handleSubmit()">Request Early Access →</button>
-
-        <p class="fine-print">
-          No credit card required. No spam. Ever.<br>
-          By submitting, you agree to our
-          <a href="/terms">Terms &amp; Conditions</a> and <a href="/privacy">Privacy Policy</a>.
-        </p>
-      </div>
-
-      <div class="success-msg" id="success">
-        <div class="check">✅</div>
-        <h3>You're on the list.</h3>
-        <p>We'll reach out within 24 hours to get you set up.<br>Check your inbox for a confirmation.</p>
-      </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <h3>AI-Assisted Follow-Up</h3>
+      <p>Intelligent follow-up sequences that qualify prospects, handle common questions, and book appointments — automatically.</p>
     </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <a class="logo" href="#">BOOKD.AI</a>
-    <p>© 2026 BookdAI · Operated by Invictus Marketing Group LLC</p>
-    <nav>
-      <a href="/privacy">Privacy</a>
-      <a href="/terms">Terms</a>
-      <a href="mailto:support@bookdwithai.com">Contact</a>
-    </nav>
-  </footer>
-
-  <script>
-    function handleSubmit() {
-      const fname = document.getElementById('fname').value.trim();
-      const lname = document.getElementById('lname').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-
-      if (!fname || !lname || !email || !phone) {
-        alert('Please fill in all required fields.');
-        return;
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <h3>Broker Consulting</h3>
+      <p>Systems and strategy for independent brokers looking to build scalable, sustainable client acquisition pipelines.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-label">About</div>
+    <h2>Led by<br><em>Daniel Whigham.</em></h2>
+    <p>Invictus Marketing Agency was built for insurance professionals who are serious about growth. We combine direct outreach, intelligent automation, and proven sales frameworks to help brokers spend more time closing and less time chasing.</p>
+    <p>Based in Northeast Florida, serving brokers nationwide.</p>
+    <br>
+    <a href="#contact" class="btn-primary">Work with us</a>
+  </div>
+  <div class="about-details reveal">
+    <div class="about-item">
+      <div class="about-item-label">Principal</div>
+      <div class="about-item-val">Daniel Whigham<br>Independent Insurance Broker &amp; Agency Owner</div>
+    </div>
+    <div class="about-item">
+      <div class="about-item-label">Specialty</div>
+      <div class="about-item-val">Health insurance client acquisition, agent outreach systems, AI-assisted lead conversion</div>
+    </div>
+    <div class="about-item">
+      <div class="about-item-label">Location</div>
+      <div class="about-item-val">Fruit Cove / St. Johns, Florida</div>
+    </div>
+    <div class="about-item">
+      <div class="about-item-label">Licensing</div>
+      <div class="about-item-val">Licensed Health &amp; Life Insurance Professional, State of Florida</div>
+    </div>
+  </div>
+</section>
+ 
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get in touch</div>
+  <h2>Ready to<br><em>grow?</em></h2>
+  <p>Reach out to discuss how Invictus can support your agency.</p>
+  <div class="contact-links reveal">
+    <a href="mailto:contact@invictusmarketingagency.com" class="contact-link">
+      <span class="contact-link-label">Email</span>
+      <span class="contact-link-val">contact@invictusmarketingagency.com</span>
+    </a>
+    <a href="tel:+19045550000" class="contact-link" id="phone-link">
+      <span class="contact-link-label">Phone</span>
+      <span class="contact-link-val" id="phone-display">+1 (904) 555-0000</span>
+    </a>
+    <a href="#" class="contact-link">
+      <span class="contact-link-label">Location</span>
+      <span class="contact-link-val">St. Johns, Florida</span>
+    </a>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Invictus Marketing Agency — Daniel Whigham</p>
+  <p>St. Johns, Florida <span>·</span> All rights reserved</p>
+</footer>
+ 
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        observer.unobserve(entry.target);
       }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
 
-      // SMS consent is OPTIONAL — form submits regardless of checkbox state
-      document.getElementById('form-wrap').style.display = 'none';
-      document.getElementById('success').style.display = 'block';
-    }
-  </script>
+ <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a35c0cd946a4896c2415d4a" data-source="WEB_USER"></script>
 
 </body>
 </html>
