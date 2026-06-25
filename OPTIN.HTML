@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  VERIFY BEFORE GOING LIVE:
+  1. Replace "Invictus Marketing Group LLC" everywhere with the EXACT legal
+     name on your state Secretary of State registration. The carrier will
+     compare this against your Telnyx verification — they must match exactly.
+  2. Confirm support@bookdai.com is correct (Telnyx form had bookdwithai.com).
+  3. Wire the <form> action to your backend / GoHighLevel endpoint. Right now
+     it is a placeholder and does not send anywhere.
+  4. Host this at the SAME URL you submit to Telnyx as the opt-in workflow,
+     then screenshot THIS page (showing both checkboxes) for the image field.
+  ============================================================================
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join BookdAI — SMS Sign-Up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --black:#0a0a0a; --panel:#121212; --off-white:#f4f1eb;
+    --accent:#c8f04d; --muted:#8a8a7e; --border:rgba(255,255,255,0.09);
+    --field:#1b1b1a; --field-border:rgba(255,255,255,0.14);
+  }
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'DM Sans',sans-serif; background:var(--black);
+    color:var(--off-white); line-height:1.6; min-height:100vh;
+    display:flex; flex-direction:column;
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1.25rem 2.5rem; border-bottom:1px solid var(--border);
+  }
+  .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-0.02em}
+  .logo span{color:var(--accent)}
+  .nav-note{font-size:.8rem;color:var(--muted)}
+  .wrap{width:100%;max-width:620px;margin:0 auto;padding:3.5rem 1.5rem 5rem;flex:1}
+  .eyebrow{
+    display:inline-block;font-size:.72rem;font-weight:500;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:1rem;
+  }
+  h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,2.85rem);
+    letter-spacing:-0.03em;line-height:1.05;margin-bottom:.9rem}
+  .lede{color:#b6b6a8;font-weight:300;font-size:1.02rem;max-width:48ch;margin-bottom:2.5rem}
+  form{display:flex;flex-direction:column;gap:1.15rem}
+  .field label{display:block;font-size:.85rem;font-weight:500;margin-bottom:.4rem}
+  .field .opt{color:var(--muted);font-weight:400}
+  .field input{
+    width:100%;background:var(--field);border:1px solid var(--field-border);
+    border-radius:9px;padding:.8rem .9rem;color:var(--off-white);
+    font-family:inherit;font-size:.95rem;transition:border-color .15s;
+  }
+  .field input:focus{outline:none;border-color:var(--accent)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:1.15rem}
+  @media(max-width:520px){.row{grid-template-columns:1fr}}
+  .consent{
+    background:var(--panel);border:1px solid var(--border);border-radius:12px;
+    padding:1.1rem 1.2rem;display:flex;gap:.85rem;align-items:flex-start;
+  }
+  .consent input[type="checkbox"]{
+    appearance:none;-webkit-appearance:none;flex:0 0 auto;width:22px;height:22px;
+    margin-top:2px;border:1.5px solid var(--field-border);border-radius:6px;
+    background:var(--field);cursor:pointer;position:relative;transition:.15s;
+  }
+  .consent input[type="checkbox"]:checked{background:var(--accent);border-color:var(--accent)}
+  .consent input[type="checkbox"]:checked::after{
+    content:"";position:absolute;left:7px;top:3px;width:6px;height:11px;
+    border:solid var(--black);border-width:0 2px 2px 0;transform:rotate(45deg);
+  }
+  .consent input[type="checkbox"]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .consent .ctext{font-size:.82rem;color:#bdbdb0;line-height:1.55}
+  .consent .ctext strong{color:var(--off-white);font-weight:600}
+  .consent .ctext a{color:var(--accent);text-decoration:none}
+  .consent .ctext a:hover{text-decoration:underline}
+  .consent .tag{display:block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--accent);font-weight:500;margin-bottom:.3rem}
+  button{
+    margin-top:.6rem;background:var(--accent);color:var(--black);border:none;
+    border-radius:9px;padding:.95rem;font-family:'Syne',sans-serif;font-weight:700;
+    font-size:1rem;letter-spacing:-0.01em;cursor:pointer;transition:filter .15s,transform .1s;
+  }
+  button:hover{filter:brightness(1.06)}
+  button:active{transform:translateY(1px)}
+  button:disabled{opacity:.45;cursor:not-allowed}
+  .finehint{font-size:.78rem;color:var(--muted);text-align:center;margin-top:.2rem}
+  #msg{display:none;font-size:.85rem;text-align:center;padding:.8rem;border-radius:9px;margin-top:.4rem}
+  #msg.ok{display:block;background:rgba(200,240,77,.1);border:1px solid rgba(200,240,77,.3);color:var(--accent)}
+  #msg.err{display:block;background:rgba(255,80,80,.08);border:1px solid rgba(255,80,80,.25);color:#e0a0a0}
+  footer{border-top:1px solid var(--border);padding:1.4rem 2.5rem;
+    display:flex;gap:1rem;justify-content:space-between;flex-wrap:wrap}
+  footer p,footer a{font-size:.78rem;color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">bookd<span>.ai</span></div>
+  <div class="nav-note">For licensed insurance agents</div>
+</nav>
+
+<main class="wrap">
+  <span class="eyebrow">Agent SMS Sign-Up</span>
+  <h1>Get BookdAI updates by text</h1>
+  <p class="lede">For agents working with the BookdAI appointment-setting platform. Choose what you want to hear about — each is optional, and you can opt out of either anytime by replying STOP.</p>
+
+  <form id="optin" novalidate>
+    <div class="row">
+      <div class="field">
+        <label for="first">First name</label>
+        <input id="first" name="first" type="text" autocomplete="given-name" required>
+      </div>
+      <div class="field">
+        <label for="last">Last name</label>
+        <input id="last" name="last" type="text" autocomplete="family-name" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" autocomplete="email" required>
+    </div>
+
+    <div class="field">
+      <label for="phone">Mobile number <span class="opt">(optional — only needed if you want SMS)</span></label>
+      <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(555) 555-5555">
+    </div>
+
+    <!-- CHECKBOX 1 — TRANSACTIONAL / CUSTOMER CARE -->
+    <label class="consent">
+      <input type="checkbox" id="c_transactional" name="c_transactional">
+      <span class="ctext">
+        <span class="tag">Account &amp; service texts</span>
+        By checking this box, you consent to receive <strong>transactional and customer-care text messages</strong> (onboarding steps, account and service updates, demo scheduling, and appointment confirmations) from <strong>Invictus Marketing Group LLC (BookdAI)</strong>. Reply STOP to opt out, HELP for help. Message frequency varies. Msg &amp; data rates may apply. See our <a href="sms-terms.html">SMS Terms</a> and <a href="privacy.html">Privacy Policy</a>.
+      </span>
+    </label>
+
+    <!-- CHECKBOX 2 — MARKETING / PROMOTIONAL -->
+    <label class="consent">
+      <input type="checkbox" id="c_marketing" name="c_marketing">
+      <span class="ctext">
+        <span class="tag">Offers &amp; updates</span>
+        By checking this box, you consent to receive <strong>marketing text messages</strong> (new features, promotions, pricing offers, and platform tips) from <strong>Invictus Marketing Group LLC (BookdAI)</strong>. Reply STOP to opt out, HELP for help. Message frequency varies. Msg &amp; data rates may apply. Consent is not a condition of any purchase. See our <a href="sms-terms.html">SMS Terms</a> and <a href="privacy.html">Privacy Policy</a>.
+      </span>
+    </label>
+
+    <button type="submit" id="submitBtn">Sign me up</button>
+    <p class="finehint">Check at least one box above to receive texts. We never sell or share your number.</p>
+    <p id="msg"></p>
+  </form>
+</main>
+
+<footer>
+  <p>&copy; 2026 Invictus Marketing Group LLC (BookdAI)</p>
+  <p><a href="privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="terms.html">Terms</a> &nbsp;·&nbsp; support@bookdai.com</p>
+</footer>
+
+<script>
+  // Minimal client-side guard. Replace the submit handler with a POST to your
+  // backend / GoHighLevel. Phone is only required if a consent box is checked.
+  const form = document.getElementById('optin');
+  const msg = document.getElementById('msg');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    msg.className = ''; msg.textContent = '';
+    const t = document.getElementById('c_transactional').checked;
+    const m = document.getElementById('c_marketing').checked;
+    const phone = document.getElementById('phone').value.trim();
+    if (!t && !m) {
+      msg.className = 'err';
+      msg.textContent = 'Please check at least one box to choose which texts you want.';
+      return;
+    }
+    if ((t || m) && !phone) {
+      msg.className = 'err';
+      msg.textContent = 'Add your mobile number so we can text you.';
+      return;
+    }
+    // TODO: send {first,last,email,phone, consent:{transactional:t, marketing:m}, timestamp}
+    // to your backend so each consent is logged separately with date/time.
+    msg.className = 'ok';
+    msg.textContent = "You're set. Watch for a confirmation text shortly.";
+    form.reset();
+  });
+</script>
+</body>
+</html>
