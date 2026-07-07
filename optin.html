@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request an Insurance Quote | Invictus Marketing Group LLC</title>
+<style>
+  :root{
+    --navy:#0f2439;
+    --navy-deep:#0a1a2b;
+    --gold:#b98a2f;
+    --paper:#f7f8fa;
+    --ink:#1c2733;
+    --muted:#5b6b7c;
+    --line:#dde3ea;
+    --white:#ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+  }
+  header{
+    background:var(--navy);
+    color:var(--white);
+    padding:22px 24px;
+  }
+  .header-inner{
+    max-width:960px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  }
+  .brand{
+    font-size:1.25rem;font-weight:700;letter-spacing:.4px;
+  }
+  .brand span{color:var(--gold);}
+  .header-tag{font-size:.85rem;color:#c7d2de;}
+  .hero{
+    background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);
+    color:var(--white);
+    padding:44px 24px 56px;
+    text-align:center;
+  }
+  .hero h1{font-size:1.9rem;font-weight:700;max-width:640px;margin:0 auto 12px;}
+  .hero p{max-width:560px;margin:0 auto;color:#c7d2de;font-size:1rem;}
+  main{max-width:640px;margin:-28px auto 60px;padding:0 20px;}
+  .card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:0 8px 28px rgba(15,36,57,.10);
+    padding:32px 30px;
+  }
+  .card h2{font-size:1.2rem;margin-bottom:4px;}
+  .card .sub{color:var(--muted);font-size:.9rem;margin-bottom:22px;}
+  label{display:block;font-weight:600;font-size:.88rem;margin:16px 0 6px;}
+  .req{color:#b3352b;}
+  input[type=text],input[type=email],input[type=tel],select{
+    width:100%;padding:11px 12px;
+    border:1px solid var(--line);border-radius:6px;
+    font-size:.95rem;background:var(--white);color:var(--ink);
+  }
+  input:focus,select:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold);}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:560px){.row{grid-template-columns:1fr;}}
+  .consent{
+    margin-top:24px;
+    background:#f4f7fb;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:16px;
+    display:flex;gap:12px;align-items:flex-start;
+  }
+  .consent input[type=checkbox]{
+    margin-top:3px;width:18px;height:18px;flex-shrink:0;accent-color:var(--navy);
+  }
+  .consent label{margin:0;font-weight:400;font-size:.83rem;color:var(--ink);line-height:1.5;}
+  .consent a{color:var(--navy);font-weight:600;}
+  button[type=submit]{
+    margin-top:24px;width:100%;
+    background:var(--navy);color:var(--white);
+    border:none;border-radius:6px;
+    padding:14px;font-size:1rem;font-weight:700;letter-spacing:.3px;
+    cursor:pointer;transition:background .15s ease;
+  }
+  button[type=submit]:hover{background:var(--navy-deep);}
+  button[type=submit]:focus-visible{outline:3px solid var(--gold);outline-offset:2px;}
+  .fine{margin-top:14px;font-size:.75rem;color:var(--muted);text-align:center;}
+  .success{
+    display:none;margin-top:20px;padding:16px;
+    background:#eef8f0;border:1px solid #bfe3c6;border-radius:8px;
+    color:#1e5b2a;font-size:.92rem;font-weight:600;text-align:center;
+  }
+  .policy{
+    max-width:640px;margin:0 auto 60px;padding:0 20px;
+  }
+  .policy section{
+    background:var(--white);border:1px solid var(--line);border-radius:10px;
+    padding:28px 30px;margin-bottom:24px;
+  }
+  .policy h2{font-size:1.1rem;margin-bottom:12px;color:var(--navy);}
+  .policy p{font-size:.88rem;color:var(--ink);margin-bottom:12px;}
+  .policy ul{font-size:.88rem;margin:0 0 12px 20px;}
+  .policy li{margin-bottom:6px;}
+  footer{
+    background:var(--navy-deep);color:#9db0c2;
+    padding:26px 24px;text-align:center;font-size:.8rem;
+  }
+  footer a{color:#c7d2de;margin:0 8px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">INVICTUS <span>MARKETING GROUP LLC</span></div>
+    <div class="header-tag">Licensed Health &amp; Life Insurance Services</div>
+  </div>
+</header>
+
+<div class="hero">
+  <h1>Request Your Free Insurance Quote</h1>
+  <p>Tell us a little about what you're looking for and a licensed agent will reach out to review your options and schedule a time that works for you.</p>
+</div>
+
+<main>
+  <div class="card">
+    <h2>Get Started</h2>
+    <p class="sub">All fields marked <span class="req">*</span> are required.</p>
+
+    <form id="quoteForm" novalidate>
+      <div class="row">
+        <div>
+          <label for="firstName">First Name <span class="req">*</span></label>
+          <input type="text" id="firstName" name="firstName" autocomplete="given-name" required>
+        </div>
+        <div>
+          <label for="lastName">Last Name <span class="req">*</span></label>
+          <input type="text" id="lastName" name="lastName" autocomplete="family-name" required>
+        </div>
+      </div>
+
+      <label for="email">Email Address <span class="req">*</span></label>
+      <input type="email" id="email" name="email" autocomplete="email" required>
+
+      <label for="phone">Mobile Phone Number <span class="req">*</span></label>
+      <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(555) 555-5555" required>
+
+      <div class="row">
+        <div>
+          <label for="insuranceType">Type of Coverage <span class="req">*</span></label>
+          <select id="insuranceType" name="insuranceType" required>
+            <option value="">Select coverage type</option>
+            <option>Health Insurance</option>
+            <option>Life Insurance</option>
+            <option>Medicare Options</option>
+            <option>Supplemental Coverage</option>
+            <option>Not Sure — Help Me Decide</option>
+          </select>
+        </div>
+        <div>
+          <label for="state">State of Residence <span class="req">*</span></label>
+          <select id="state" name="state" required>
+            <option value="">Select your state</option>
+            <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+            <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+            <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+            <option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option>
+            <option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option>
+            <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+            <option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option>
+            <option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option>
+            <option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+            <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
+            <option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option>
+            <option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option>
+            <option>Wisconsin</option><option>Wyoming</option><option>District of Columbia</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="consent">
+        <input type="checkbox" id="smsConsent" name="smsConsent">
+        <label for="smsConsent">
+          By checking this box and providing my mobile phone number, I consent to receive SMS text
+          messages from <strong>Invictus Marketing Group LLC</strong> regarding my insurance quote request,
+          appointment scheduling, appointment reminders, and account follow-ups. Consent is not a
+          condition of purchase. Message frequency varies. Message &amp; data rates may apply.
+          Reply <strong>STOP</strong> to unsubscribe or <strong>HELP</strong> for help at any time.
+          View our <a href="#privacy">Privacy Policy</a> and <a href="#terms">Terms of Service</a>.
+        </label>
+      </div>
+
+      <button type="submit">Request My Free Quote</button>
+      <p class="fine">Your information is secure and will never be sold. A licensed agent will contact you to review your options.</p>
+      <div class="success" id="successMsg">
+        Thank you! Your quote request has been received. A licensed agent from Invictus Marketing Group LLC will reach out shortly.
+      </div>
+    </form>
+  </div>
+</main>
+
+<div class="policy">
+  <section id="privacy">
+    <h2>Privacy Policy</h2>
+    <p><strong>Effective Date:</strong> January 1, 2026 &nbsp;|&nbsp; <strong>Invictus Marketing Group LLC</strong></p>
+    <p>Invictus Marketing Group LLC ("we," "us," "our") respects your privacy. This policy explains how we collect, use, and protect the information you provide through this website.</p>
+    <p><strong>Information We Collect:</strong> When you submit our quote request form, we collect your name, email address, mobile phone number, state of residence, and the type of insurance coverage you are interested in.</p>
+    <p><strong>How We Use Your Information:</strong> We use your information to respond to your quote request, schedule and confirm appointments with a licensed agent, send appointment reminders and follow-ups related to your request, and provide customer service.</p>
+    <p><strong>SMS Communications:</strong> If you opt in to SMS messaging, you will receive text messages from Invictus Marketing Group LLC related to your quote request, appointment scheduling, reminders, and account follow-ups. Message frequency varies. Message and data rates may apply. You may opt out at any time by replying STOP, or reply HELP for assistance.</p>
+    <p><strong>Mobile Information Sharing:</strong> No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. Information sharing to subcontractors in support services, such as customer service, is permitted. All other use case categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.</p>
+    <p><strong>Data Security:</strong> We use commercially reasonable safeguards to protect your personal information from unauthorized access, use, or disclosure.</p>
+    <p><strong>Contact Us:</strong> Questions about this policy may be directed to Invictus Marketing Group LLC via the contact information listed on this website.</p>
+  </section>
+
+  <section id="terms">
+    <h2>Terms of Service — SMS Program</h2>
+    <ul>
+      <li><strong>Program Description:</strong> Invictus Marketing Group LLC sends SMS messages related to insurance quote requests, appointment scheduling, appointment reminders, and account follow-ups to customers who have opted in via our web form.</li>
+      <li><strong>Opt-In:</strong> Consent is collected exclusively through the checkbox on our quote request form. Consent is not a condition of purchase.</li>
+      <li><strong>Message Frequency:</strong> Message frequency varies based on your quote request and appointment activity.</li>
+      <li><strong>Fees:</strong> Message and data rates may apply according to your mobile carrier plan.</li>
+      <li><strong>Opt-Out:</strong> Reply STOP at any time to cancel. After opting out, you will receive one final confirmation message and no further texts.</li>
+      <li><strong>Help:</strong> Reply HELP at any time for assistance, or contact us via the information listed on this website.</li>
+      <li><strong>Carriers:</strong> Carriers are not liable for delayed or undelivered messages.</li>
+    </ul>
+  </section>
+</div>
+
+<footer>
+  <div>&copy; 2026 Invictus Marketing Group LLC. All rights reserved.</div>
+  <div style="margin-top:8px;">
+    <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a>
+  </div>
+</footer>
+
+<script>
+  // PLUG-AND-PLAY WEBHOOK:
+  // Replace the value below with your GHL / LeadConnector inbound webhook URL
+  // to pipe submissions straight into your CRM. Leave as "" to demo-only.
+  var WEBHOOK_URL = "";
+
+  document.getElementById("quoteForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var form = e.target;
+
+    // basic required-field validation
+    var required = form.querySelectorAll("[required]");
+    for (var i = 0; i < required.length; i++){
+      if (!required[i].value.trim()){
+        required[i].focus();
+        required[i].style.borderColor = "#b3352b";
+        return;
+      }
+      required[i].style.borderColor = "";
+    }
+
+    var payload = {
+      firstName: form.firstName.value.trim(),
+      lastName:  form.lastName.value.trim(),
+      email:     form.email.value.trim(),
+      phone:     form.phone.value.trim(),
+      insuranceType: form.insuranceType.value,
+      state:     form.state.value,
+      smsConsent: form.smsConsent.checked,
+      consentTimestamp: new Date().toISOString(),
+      consentSource: window.location.href
+    };
+
+    if (WEBHOOK_URL){
+      fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(payload)
+      }).catch(function(err){ console.error("Webhook error:", err); });
+    }
+
+    form.querySelector("button[type=submit]").disabled = true;
+    document.getElementById("successMsg").style.display = "block";
+  });
+</script>
+
+</body>
+</html>
